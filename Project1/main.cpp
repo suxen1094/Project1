@@ -5,14 +5,13 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {	
-	char m, n;
+	char n, m;
 	string tmp;
-	fstream ff;
-	ff.open("1.data");
-	while (!ff.eof()) {
-		ff.getline(tmp, 10);
-		cout << tmp;
+	fstream file;
+	file.open("1.data", ios::in);
+	while (!file.eof()) {
+		getline(file, tmp);
+		cout << tmp << endl;
 	}
-	ff.close();
 	return 0;
 }
