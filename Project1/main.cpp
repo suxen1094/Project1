@@ -1,18 +1,18 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
-int main()
-{
-	int m, n;
+int main(int argc, char *argv[])
+{	
+	char m, n;
 	string tmp;
-	char cc[256];
-	ifstream in;
-	ofstream out;
-	in.open("1.data");
-
-	while (!in.eof()) {
-		in.get
+	fstream ff;
+	ff.open("1.data");
+	while (!ff.eof()) {
+		ff.getline(tmp, 10);
+		cout << tmp;
 	}
+	ff.close();
 	return 0;
 }
