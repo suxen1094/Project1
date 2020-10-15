@@ -201,11 +201,6 @@ public:
 		}
 	}
 	~Case() {
-		for (int i = 0; i < row; i++) {
-			delete[] a[i];
-		}
-		delete[] a;
-		delete[] first_block;
 	}
 
 	int ** a;
@@ -253,6 +248,8 @@ public:
 			}
 			if (hit) break;
 		}
+
+		cout << "fall down OK!!\n";
 		// move
 		current_col += c.step;
 		
@@ -269,6 +266,8 @@ public:
 				if (hit) break;
 			}
 		}
+
+		cout << "hit!!OK!!\n";
 
 		// set the tetris block
 		for (int i = 0; i < c.row; i++) {
@@ -299,7 +298,7 @@ public:
 				this->a[i][j] = 0;
 			}
 		}
-		this->show();
+		cout << "disappear OK!!\n";
 	}
 
 	int ** a;
@@ -314,27 +313,27 @@ int main(int argc, char *argv[])
 	fstream fin, fout;
 
 	// read in the data
-	fin.open("1.data", ios::in);
+	fin.open("3.data", ios::in);
 	fout.open("108062226_proj1.final", ios::out);
-	char m_char = fin.get();
-	char trash = fin.get(); // 把空格讀掉
-	char n_char = fin.get();
-	char trash2 = fin.get(); // 把換行讀掉
-	int m = m_char - '0';
-	int n = n_char - '0';
+	int m;
+	int n;
+	fin >> m >> n;
+	cout << m << ", " << n << endl;
 	Matrix map(m, n);
 
-	while (!fin.eof()) {
+	while (1) {
 		string s;
 		fin >> s;
 		if (s == "End") break;
-
 		int idx, step;
 		fin >> idx >> step;
 		idx--;
 		Case c(s, idx, step);
 		map.put_tetris(c);
+		cout << "s = " << c.shape << ", idx = " << c.idx << ", step = " << c.step << endl;
+		map.show();
 	}
+
 
 	// writing in 
 	for (int i = 0; i < m; i++) {
