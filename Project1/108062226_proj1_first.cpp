@@ -233,6 +233,8 @@ public:
 		bool hit = false;
 		int current_row = 0;
 		int current_col = c.idx;
+
+		// fall down
 		for (current_row = 0; current_row < this->row - 1; current_row++) {
 			for (int j = 0; j < c.col; j++) {
 				if (c.first_block[j] > current_row) continue;
@@ -242,6 +244,53 @@ public:
 			}
 			if (hit) break;
 		}
+		// move
+		current_col += c.step;
+		
+		// if hit before, then fall down again
+		if (hit) {
+			hit = false; // reset
+			for (current_row; current_row < this->row - 1; current_row++) {
+				for (int j = 0; j < c.col; j++) {
+					if (c.first_block[j] > current_row) continue;
+					else if (this->a[current_row + 1 - c.first_block[j]][current_col + j] == 1) {
+						hit = true;
+					}
+				}
+				if (hit) break;
+			}
+		}
+
+		// set the tetris block
+		for (int i = 0; i < c.row; i++) {
+			for (int j = 0; j < c.col; j++) {
+				if(c.a[i][j] == 1) this->a[current_row - i][current_col + j] = 1;
+			}
+		}
+
+		// Check if any line need to be disappear
+		int sum_row_need_disappear = 0;
+		int last_row_need_disappear = 0;
+		int *disappear_row = new int[this->row];
+		for (int i = 0; i < this->row; i++) {
+			disappear_row[i] = 1;
+			for (int j = 0; j < this->col; j++) {
+				if (this->a[i][j] == 0) disappear_row[i] = 0;
+			}
+		}
+		for (int i = 0; i < this->row; i++) {
+			if (disappear_row[i]) { // need to disappear
+				sum_row_need_disappear += 1;
+				last_row_need_disappear = i;
+			}
+		}
+		for (int i = last_row_need_disappear - sum_row_need_disappear;i >= 0 ; i--) {
+			for (int j = 0; j < this->col; j++) {
+				this->a[i + sum_row_need_disappear][j] = this->a[i][j];
+				this->a[i][j] = 0;
+			}
+		}
+
 	}
 
 	int ** a;
@@ -274,7 +323,6 @@ int main(int argc, char *argv[])
 		int idx, step;
 		fin >> idx >> step;
 		idx--;
-		step--;
 		Case(s, idx, step);
 	}
 
