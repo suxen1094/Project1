@@ -46,7 +46,7 @@ public:
 			first_block[0] = 0;
 			first_block[1] = 0;
 			first_block[2] = 0;
-			a[0][0] = a[0][1] = a[0][2] = a[1][2] = 1;
+			a[0][0] = a[0][1] = a[0][2] = a[1][1] = 1;
 		}
 		else if (s == "T4") {
 			row = 3;
