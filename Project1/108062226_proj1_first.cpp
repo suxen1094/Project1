@@ -321,12 +321,12 @@ int main(int argc, char *argv[])
 		if (s == "End") break;
 		int idx, step;
 		fin >> idx >> step;
-		cout << "s = " << s << ", idx = " << idx << ", step = " << step << endl;
+
 		idx--;
 		Case c(s, idx, step);
-		
+		map.put_tetris(c);
 		//// things for testing
-		//map.put_tetris(c);
+		//cout << "s = " << s << ", idx = " << ++idx << ", step = " << step << endl;
 		//map.show();
 	}
 
