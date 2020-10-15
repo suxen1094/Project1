@@ -313,7 +313,7 @@ int main(int argc, char *argv[])
 	fstream fin, fout;
 
 	// read in the data
-	fin.open("3.data", ios::in);
+	fin.open("2.data", ios::in);
 	fout.open("108062226_proj1.final", ios::out);
 	int m;
 	int n;
