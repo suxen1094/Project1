@@ -27,7 +27,7 @@ public:
 			first_block[0] = 1;
 			first_block[1] = 0;
 			first_block[2] = 1;
-			a[0][0] = a[0][1] = a[0][2] = a[1][1] = 1;
+			a[0][1] = a[1][0] = a[1][1] = a[1][2] = 1;
 		}
 		else if (s == "T2") {
 			row = 3;
@@ -46,7 +46,7 @@ public:
 			first_block[0] = 0;
 			first_block[1] = 0;
 			first_block[2] = 0;
-			a[0][1] = a[1][0] = a[1][1] = a[1][2] = 1;
+			a[0][0] = a[0][1] = a[0][2] = a[1][2] = 1;
 		}
 		else if (s == "T4") {
 			row = 3;
@@ -64,7 +64,7 @@ public:
 			first_block = new int[col];
 			first_block[0] = 0;
 			first_block[1] = 0;
-			a[0][0] = a[1][0] = a[2][0] = a[2][1] = 1;
+			a[0][0] = a[0][1] = a[1][0] = a[2][0] = 1;
 		}
 		else if (s == "L2") {
 			row = 2;
@@ -74,7 +74,7 @@ public:
 			first_block[0] = 0;
 			first_block[1] = 1;
 			first_block[2] = 1;
-			a[0][0] = a[0][1] = a[0][2] = a[1][0] = 1;
+			a[0][0] = a[1][0] = a[1][1] = a[1][2] = 1;
 		}
 		else if (s == "L3") {
 			row = 3;
@@ -83,7 +83,7 @@ public:
 			first_block = new int[col];
 			first_block[0] = 2;
 			first_block[1] = 0;
-			a[0][0] = a[0][1] = a[1][1] = a[2][1] = 1;
+			a[0][1] = a[1][1] = a[2][0] = a[2][1] = 1;
 		}
 		else if (s == "L4") {
 			row = 2;
@@ -93,7 +93,7 @@ public:
 			first_block[0] = 0;
 			first_block[1] = 0;
 			first_block[2] = 0;
-			a[0][2] = a[1][0] = a[1][1] = a[1][2] = 1;
+			a[0][0] = a[0][1] = a[0][2] = a[1][2] = 1;
 		}
 		else if (s == "J1") {
 			row = 3;
@@ -102,9 +102,9 @@ public:
 			first_block = new int[col];
 			first_block[0] = 0;
 			first_block[1] = 0;
-			a[0][1] = a[1][1] = a[2][0] = a[2][1] = 1;
+			a[0][0] = a[0][1] = a[1][1] = a[2][1] = 1;
 		}
-		else if (s == "J2") {
+		else if (s == "J2") { 
 			row = 2;
 			col = 3;
 			a = mal(row, col);
@@ -112,7 +112,7 @@ public:
 			first_block[0] = 0;
 			first_block[1] = 0;
 			first_block[2] = 0;
-			a[0][0] = a[1][0] = a[1][1] = a[1][2] = 1;
+			a[0][0] = a[0][1] = a[0][2] = a[1][0] = 1;
 		}
 		else if (s == "J3") {
 			row = 3;
@@ -121,17 +121,17 @@ public:
 			first_block = new int[col];
 			first_block[0] = 0;
 			first_block[1] = 2;
-			a[0][0] = a[0][1] = a[1][0] = a[2][0] = 1;
+			a[0][0] = a[1][0] = a[2][0] = a[2][1] = 1;
 		}
 		else if (s == "J4") {
 			row = 2;
 			col = 3;
 			a = mal(row, col);
 			first_block = new int[col];
-			first_block[0] = 0;
-			first_block[1] = 0;
-			first_block[2] = 1;
-			a[0][0] = a[0][1] = a[0][2] = a[1][2] = 1;
+			first_block[0] = 1;
+			first_block[1] = 1;
+			first_block[2] = 0;
+			a[0][2] = a[1][0] = a[1][1] = a[1][2] = 1;
 		}
 		else if (s == "S1") {
 			row = 2;
@@ -141,7 +141,7 @@ public:
 			first_block[0] = 0;
 			first_block[1] = 0;
 			first_block[2] = 1;
-			a[0][1] = a[0][2] = a[1][0] = a[1][1] = 1;
+			a[0][0] = a[0][1] = a[1][1] = a[1][2] = 1;
 		}
 		else if (s == "S2") {
 			row = 3;
@@ -150,7 +150,7 @@ public:
 			first_block = new int[col];
 			first_block[0] = 1;
 			first_block[1] = 0;
-			a[0][0] = a[1][0] = a[1][1] = a[2][1] = 1;
+			a[0][1] = a[1][0] = a[1][1] = a[2][0] = 1;
 		}
 		else if (s == "Z1") {
 			row = 2;
@@ -160,7 +160,7 @@ public:
 			first_block[0] = 1;
 			first_block[1] = 0;
 			first_block[2] = 0;
-			a[0][0] = a[0][1] = a[1][1] = a[1][2] = 1;
+			a[0][1] = a[0][2] = a[1][0] = a[1][1] = 1;
 		}
 		else if (s == "Z2") {
 			row = 3;
@@ -169,14 +169,14 @@ public:
 			first_block = new int[col];
 			first_block[0] = 0;
 			first_block[1] = 1;
-			a[0][1] = a[1][0] = a[1][1] = a[2][0] = 1;
+			a[0][0] = a[1][0] = a[1][1] = a[2][1] = 1;
 		}
 		else if (s == "I1") {
 			row = 4;
 			col = 1;
 			a = mal(row, col);
 			first_block = new int[col];
-			first_block[0] = 1;
+			first_block[0] = 0;
 			a[0][0] = a[1][0] = a[2][0] = a[3][0] = 1;
 		}
 		else if (s == "I2") {
@@ -227,6 +227,15 @@ public:
 			delete [] a[i];
 		}
 		delete [] a;
+	}
+
+	void show() {
+		for (int i = 0; i < this->row; i++) {
+			for (int j = 0; j < this->col; j++) {
+				cout << this->a[i][j] << " ";
+			}
+			cout << endl;
+		}
 	}
 
 	void put_tetris(Case c){
@@ -290,7 +299,7 @@ public:
 				this->a[i][j] = 0;
 			}
 		}
-
+		this->show();
 	}
 
 	int ** a;
@@ -323,7 +332,8 @@ int main(int argc, char *argv[])
 		int idx, step;
 		fin >> idx >> step;
 		idx--;
-		Case(s, idx, step);
+		Case c(s, idx, step);
+		map.put_tetris(c);
 	}
 
 	// writing in 
