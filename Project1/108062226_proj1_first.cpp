@@ -249,7 +249,6 @@ public:
 			if (hit) break;
 		}
 
-		cout << "fall down OK!!\n";
 		// move
 		current_col += c.step;
 		
@@ -267,8 +266,6 @@ public:
 			}
 		}
 
-		cout << "hit!!OK!!\n";
-
 		// set the tetris block
 		for (int i = 0; i < c.row; i++) {
 			for (int j = 0; j < c.col; j++) {
@@ -277,28 +274,29 @@ public:
 		}
 
 		// Check if any line need to be disappear
-		int sum_row_need_disappear = 0;
-		int last_row_need_disappear = 0;
+		int row_need_to_check = this->row;
 		int *disappear_row = new int[this->row];
-		for (int i = 0; i < this->row; i++) {
-			disappear_row[i] = 1;
+		int checkRow = 0;
+		while (checkRow != this->row) {
+			disappear_row[checkRow] = 1;
 			for (int j = 0; j < this->col; j++) {
-				if (this->a[i][j] == 0) disappear_row[i] = 0;
+				if (this->a[checkRow][j] == 0) disappear_row[checkRow] = 0;
 			}
-		}
-		for (int i = 0; i < this->row; i++) {
-			if (disappear_row[i]) { // need to disappear
-				sum_row_need_disappear += 1;
-				last_row_need_disappear = i;
+			if (disappear_row[checkRow]) {
+				for (int i = checkRow; i >= 0; i--) {
+					for (int j = 0; j < this->col; j++) {
+						if (i == checkRow) {
+							this->a[i][j] = 0;
+						}
+						else {
+							this->a[i + 1][j] = this->a[i][j];
+							this->a[i][j] = 0;
+						}
+					}
+				}
 			}
+			checkRow++;
 		}
-		for (int i = last_row_need_disappear - sum_row_need_disappear;i >= 0 ; i--) {
-			for (int j = 0; j < this->col; j++) {
-				this->a[i + sum_row_need_disappear][j] = this->a[i][j];
-				this->a[i][j] = 0;
-			}
-		}
-		cout << "disappear OK!!\n";
 	}
 
 	int ** a;
@@ -309,16 +307,12 @@ public:
 
 int main(int argc, char *argv[])
 {	
-	string tmp;
 	fstream fin, fout;
-
 	// read in the data
-	fin.open("2.data", ios::in);
+	fin.open(argv[1], ios::in);
 	fout.open("108062226_proj1.final", ios::out);
-	int m;
-	int n;
+	int m, n;
 	fin >> m >> n;
-	cout << m << ", " << n << endl;
 	Matrix map(m, n);
 
 	while (1) {
@@ -327,13 +321,14 @@ int main(int argc, char *argv[])
 		if (s == "End") break;
 		int idx, step;
 		fin >> idx >> step;
+		cout << "s = " << s << ", idx = " << idx << ", step = " << step << endl;
 		idx--;
 		Case c(s, idx, step);
-		map.put_tetris(c);
-		cout << "s = " << c.shape << ", idx = " << c.idx << ", step = " << c.step << endl;
-		map.show();
+		
+		//// things for testing
+		//map.put_tetris(c);
+		//map.show();
 	}
-
 
 	// writing in 
 	for (int i = 0; i < m; i++) {
