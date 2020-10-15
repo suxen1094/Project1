@@ -18,8 +18,6 @@ int ** mal(int m, int n) {
 
 class shape {
 public:
-	int ** a;
-	int row, col, idx, step;
 	shape(string s, int IDX, int STEP) :idx(IDX), step(STEP) {
 		if (s == "T1") {
 			row = 2;
@@ -136,20 +134,34 @@ public:
 			a[0][0] = a[0][1] = a[1][0] = a[1][1] = 1;
 		}
 	}
+	~shape() {
+		for (int i = 0; i < row; i++) {
+			delete[] a[i];
+		}
+		delete[] a;
+	}
+
+	int ** a;
+	int row, col, idx, step;
 };
 
 class Matrix {
 public:
-	Matrix() {};
-
 	Matrix(int m, int n) 
 		: row(m), col(n) 
 	{
 		a = mal(m, n);
 	};
 
-	void put_tetris(){
+	~Matrix() {
+		for (int i = 0; i < row; i++) {
+			delete [] a[i];
+		}
+		delete [] a;
+	}
 
+	void put_tetris(shape s){
+		
 	}
 
 	int ** a;
